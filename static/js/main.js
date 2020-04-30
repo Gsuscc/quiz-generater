@@ -50,19 +50,40 @@ function clearNextButton() {
     container.removeChild(container.lastChild)
 }
 
-function displayQuestion(questions){
-    if (questions.length > 1){
-    clearNextButton()
-    createNextButton(questions)
-    let questionHeader = document.getElementById('question')
-    let question = getNextQuestion(questions)
+function deleteQuestionFromArray(questions, question) {
     let index = questions.indexOf(question);
     questions.splice(index,1);
-    questionHeader.innerText = question
+}
+
+function displayQuestion(questions){
+    if (questions.length > 1){
+        clearNextButton()
+        clearQuestionContainer()
+        createNextButton(questions)
+        generateQuestionContainer()
+        let questionHeader = document.getElementById('question')
+        let question = getNextQuestion(questions)
+        deleteQuestionFromArray(questions, question)
+        questionHeader.innerText = question
     }
     else {
         showResult()
     }
+}
+
+function clearQuestionContainer() {
+    let container = document.getElementById('container')
+    container.removeChild(container.lastChild)
+}
+
+
+function generateQuestionContainer() {
+    let container = document.getElementById('container')
+    let questionContainer = document.createElement('div')
+    let questionHeader = document.createElement('h2')
+    questionHeader.setAttribute('id', 'question')
+    questionContainer.setAttribute('id', 'question-container')
+    container.appendChild(questionContainer.appendChild(questionHeader))
 }
 
 
@@ -78,7 +99,6 @@ function showResult() {
     $('#modal-footer').empty()
     $('#modal-body').append(`Your Result is : ${result} of 95 question`)
     $('#modal-footer').append()
-
     $("#modal").modal()
 
 }

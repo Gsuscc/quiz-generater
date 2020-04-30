@@ -1,3 +1,9 @@
+h1#page-title{
+    font-family: monospace;
+    text-align: center;
+}
+
+
 #question{
     margin: 200px;
     width: 50%;
