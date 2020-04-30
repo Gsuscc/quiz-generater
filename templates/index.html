@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go4Go!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <div id="container">
+        <h1 id="page-title">Tech-WorkBook-Quiz</h1>
+
+        <div id="random-quiz-button">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Start Random Quiz</button>
+        </div>
+
+        <div id="quiz-button">
+            <button type="button" class="btn btn-secondary btn-lg btn-block">Quiz in Order</button>
+        </div>
+
+{#        <div id="question-container">#}
+{#            <h2 id="question"></h2>#}
+{#        </div>#}
+
+    </div>
+
+
+    <script type='module' src="{{ url_for( 'static', filename= 'js/main.js') }}"></script>
+</body>
+</html>
