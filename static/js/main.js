@@ -34,22 +34,28 @@ function clearButtons() {
     randomButtonContainer.style.display = 'none';
 }
 
-
-function displayQuestion(questions){
-    let questionHeader = document.getElementById('question')
+function createNextButton(questions) {
     let questionHeaderContainer = document.getElementById('question-container');
     let nextQuestionButton = document.createElement("button");
     nextQuestionButton.innerText = 'Next'
     nextQuestionButton.setAttribute('class', 'btn btn-primary btn-lg')
     nextQuestionButton.addEventListener('click', displayQuestion.bind(event, questions));
     questionHeaderContainer.appendChild(nextQuestionButton)
+}
+
+function clearNextButton() {
+    let questionHeaderContainer = document.getElementById('question-container');
+    questionHeaderContainer.removeChild(questionHeaderContainer.lastChild)
+}
+
+function displayQuestion(questions){
+    clearNextButton()
+    createNextButton(questions)
+    let questionHeader = document.getElementById('question')
     let question = getNextQuestion(questions)
-    console.log('question :' + question )
     let index = questions.indexOf(question);
-    console.log('index: ' + index)
     questions.splice(index,1);
     questionHeader.innerText = question
-    console.log(questions)
 
 }
 
