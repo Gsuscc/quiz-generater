@@ -7,7 +7,6 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def main():
-    questions = connection.get_all_questions()
     return render_template('index.html')
 
 

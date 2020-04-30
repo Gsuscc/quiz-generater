@@ -2,29 +2,54 @@ init();
 
 
 function init() {
-    loadQuestions('/quiz', function (result) {
 
-    })
+    setRandomQuiz()
+    // loadQuestions('/quiz', function (result) {
+    //
+    // })
 }
 
 
 function setRandomQuiz() {
-    let randomButton = document.getElementById('random-quiz-button').firstChild
-    randomButton.addEventListener('click', startQuiz)
+    let randomButton = document.getElementById('random-quiz-button').firstElementChild;
+    randomButton.addEventListener('click', startRandomQuiz);
+}
+
+
+function setNormalQuiz() {
+    let quizButton = document.getElementById('quiz-button').firstElementChild;
+    quizButton.addEventListener('click', startQuiz)
 }
 
 function startQuiz() {
     clearScreen()
-    displayQuestion()
+}
+
+function startRandomQuiz() {
+    clearScreen();
+    loadQuestionScreen()
 }
 
 function clearScreen() {
-    let randomButton = document.getElementById('random-quiz-button')
-    let normalButton = document.getElementById('normal-button')
+    let randomButtonContainer = document.getElementById('random-quiz-button');
+    let normalButtonContainer = document.getElementById('quiz-button');
+    normalButtonContainer.style.display = 'none';
+    randomButtonContainer.style.display = 'none';
 }
 
-function getRandomQuestions() {
+function loadQuestionScreen(){
+    let questionContainer = document.getElementById('question')
+    loadQuestions('/quiz', getRandomQuestion)
+}
 
+
+
+function getRandomQuestion(result) {
+    let questionArr = []
+    for (let question of result) {
+        questionArr.push(question.question)
+    }
+    console.log(questionArr)
 }
 
 
