@@ -36,17 +36,18 @@ function clearButtons() {
 }
 
 function createNextButton(questions) {
-    let questionHeaderContainer = document.getElementById('question-container');
+    let container = document.getElementById('container');
     let nextQuestionButton = document.createElement("button");
     nextQuestionButton.innerText = 'Next'
     nextQuestionButton.setAttribute('class', 'btn btn-primary btn-lg')
+    nextQuestionButton.setAttribute('id', 'next-question')
     nextQuestionButton.addEventListener('click', displayQuestion.bind(event, questions));
-    questionHeaderContainer.appendChild(nextQuestionButton)
+    container.appendChild(nextQuestionButton)
 }
 
 function clearNextButton() {
-    let questionHeaderContainer = document.getElementById('question-container');
-    questionHeaderContainer.removeChild(questionHeaderContainer.lastChild)
+    let container = document.getElementById('container');
+    container.removeChild(container.lastChild)
 }
 
 function displayQuestion(questions){

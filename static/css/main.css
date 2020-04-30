@@ -13,3 +13,11 @@
         opacity:1;
     }
 }
+
+#body-wrapper{
+    z-index: 10;
+}
+
+#next-question{
+    position: fixed;
+}
