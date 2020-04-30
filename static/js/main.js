@@ -1,12 +1,8 @@
 init();
-
+let questionArr = [];
 
 function init() {
-
     setRandomQuiz()
-    // loadQuestions('/quiz', function (result) {
-    //
-    // })
 }
 
 
@@ -27,7 +23,9 @@ function startQuiz() {
 
 function startRandomQuiz() {
     clearScreen();
-    loadQuestionScreen()
+    loadQuestions('/quiz', getQuestions);
+    let questions = questionArr;
+    displayQuestion(questions)
 }
 
 function clearScreen() {
@@ -37,26 +35,26 @@ function clearScreen() {
     randomButtonContainer.style.display = 'none';
 }
 
-function loadQuestionScreen(){
+function displayQuestion(questions){
     let questionContainer = document.getElementById('question')
-    loadQuestions('/quiz', getQuestions)
+    questionContainer.innerText = getNextQuestion(questions)
+
 }
 
 
 function getQuestions(result) {
-    let questionArr = []
     for (let question of result) {
-        questionArr.push(question.question)
+        questionArr.push(question['question'])
     }
-    return questionArr
 }
 
 function getRandomQuestion(questions) {
+    console.log(questions)
     return questions[Math.floor(Math.random() * questions.length)]
 }
 
 function getNextQuestion(questions) {
-    let question = getRandomQuestion();
+    let question = getRandomQuestion(questions);
     let index = questions.indexOf(question);
     questions.splice(index,question);
     return question
