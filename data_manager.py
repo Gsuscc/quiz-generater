@@ -14,7 +14,7 @@ def add_question_to_db(cursor, question):
 @util.connection_handler
 def get_questions(cursor):
     query = f"""
-    SELECT question FROM questions ;
+    SELECT question FROM questions LIMIT 5 ;
     """
     cursor.execute(query)
     return cursor.fetchall()

@@ -18,7 +18,8 @@ function setNormalQuiz() {
 }
 
 function startQuiz() {
-    clearScreen()
+    clearButtons()
+    loadQuestions('/quiz', )
 }
 
 function startRandomQuiz() {
@@ -49,6 +50,7 @@ function clearNextButton() {
 }
 
 function displayQuestion(questions){
+    if (questions.length > 1){
     clearNextButton()
     createNextButton(questions)
     let questionHeader = document.getElementById('question')
@@ -56,6 +58,27 @@ function displayQuestion(questions){
     let index = questions.indexOf(question);
     questions.splice(index,1);
     questionHeader.innerText = question
+    }
+    else {
+        showResult()
+    }
+}
+
+
+function createRestartButton() {
+    let restartButton = document.createElement('button');
+    restartButton.innerText = 'Retry';
+    restartButton.addEventListener('click', loadQuestions)
+    return restartButton
+}
+function showResult() {
+    $('#container').empty()
+    $('#modal-body').empty()
+    $('#modal-footer').empty()
+    $('#modal-body').append(`Your Result is : ${result} of 95 question`)
+    $('#modal-footer').append()
+
+    $("#modal").modal()
 
 }
 
