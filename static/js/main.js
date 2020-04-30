@@ -17,6 +17,7 @@ function setNormalQuiz() {
     quizButton.addEventListener('click', startQuiz)
 }
 
+
 function startQuiz() {
     clearButtons()
     loadQuestions('/quiz', )
@@ -38,11 +39,11 @@ function clearButtons() {
 function createNextButton(questions) {
     let container = document.getElementById('container');
     let nextQuestionButton = document.createElement("button");
-    nextQuestionButton.innerText = 'Next'
-    nextQuestionButton.setAttribute('class', 'btn btn-primary btn-lg')
-    nextQuestionButton.setAttribute('id', 'next-question')
+    nextQuestionButton.innerText = 'Next';
+    nextQuestionButton.setAttribute('class', 'btn btn-primary btn-lg');
+    nextQuestionButton.setAttribute('id', 'next-question');
     nextQuestionButton.addEventListener('click', function (event) {
-
+            isRightAnswerModal()
             displayQuestion(questions)
     });
     container.appendChild(nextQuestionButton)
@@ -58,7 +59,7 @@ function deleteQuestionFromArray(questions, question) {
     let index = questions.indexOf(question);
     questions.splice(index,1);
 }
-let result = 0
+let result = 0;
 
 function displayQuestion(questions){
     if (questions.length > 1){
@@ -77,21 +78,40 @@ function displayQuestion(questions){
 }
 
 function clearQuestionContainer() {
-    let container = document.getElementById('container')
+    let container = document.getElementById('container');
     if(container.lastChild)
         container.removeChild(container.lastChild)
 }
 
 
 function generateQuestionContainer() {
-    let container = document.getElementById('container')
-    let questionContainer = document.createElement('div')
-    let questionHeader = document.createElement('h2')
-    questionHeader.setAttribute('id', 'question')
-    questionContainer.setAttribute('id', 'question-container')
+    let container = document.getElementById('container');
+    let questionContainer = document.createElement('div');
+    let questionHeader = document.createElement('h2');
+    questionHeader.setAttribute('id', 'question');
+    questionContainer.setAttribute('id', 'question-container');
     container.appendChild(questionContainer.appendChild(questionHeader))
 }
 
+function isRightAnswerModal (){
+    $('#modal-body').empty();
+    $('#modal-footer').empty();
+    $('#modal-body').append('Did you know that?');
+    $('#modal-footer').append(getRightAnswerButton());
+    $("#modal").modal()
+
+}
+
+function getRightAnswerButton(){
+    let button = document.createElement('button')
+    button.innerText = 'Fuck Yeah, I knew it!'
+    button.addEventListener('click', function () {
+            result++
+        $("#modal").modal('hide')
+
+    })
+    return button
+}
 
 function createRestartButton() {
     let restartButton = document.createElement('button');
@@ -102,12 +122,12 @@ function createRestartButton() {
     })
     return restartButton
 }
-function showResult(result) {
-    $('#container').empty()
-    $('#modal-body').empty()
-    $('#modal-footer').empty()
-    $('#modal-body').append(`Your Result is : ${result} of 95 question`)
-    $('#modal-footer').append(createRestartButton())
+function showResult() {
+    $('#container').empty();
+    $('#modal-body').empty();
+    $('#modal-footer').empty();
+    $('#modal-body').append(`Your Result is : ${result} of 95 question`);
+    $('#modal-footer').append(createRestartButton());
     $("#modal").modal()
 
 }
