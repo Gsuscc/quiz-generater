@@ -50,7 +50,8 @@ function createNextButton(questions) {
 
 function clearNextButton() {
     let container = document.getElementById('container');
-    container.removeChild(container.lastChild)
+    if(container.lastChild)
+        container.removeChild(container.lastChild)
 }
 
 function deleteQuestionFromArray(questions, question) {
@@ -61,13 +62,13 @@ let result = 0
 
 function displayQuestion(questions){
     if (questions.length > 1){
-        // clearNextButton()
-        // clearQuestionContainer()
-        createNextButton(questions)
-        generateQuestionContainer()
-        let questionHeader = document.getElementById('question')
-        let question = getNextQuestion(questions)
-        deleteQuestionFromArray(questions, question)
+        clearNextButton();
+        clearQuestionContainer();
+        createNextButton(questions);
+        generateQuestionContainer();
+        let questionHeader = document.getElementById('question');
+        let question = getNextQuestion(questions);
+        deleteQuestionFromArray(questions, question);
         questionHeader.innerText = question
     }
     else {
@@ -77,7 +78,8 @@ function displayQuestion(questions){
 
 function clearQuestionContainer() {
     let container = document.getElementById('container')
-    container.removeChild(container.lastChild)
+    if(container.lastChild)
+        container.removeChild(container.lastChild)
 }
 
 
