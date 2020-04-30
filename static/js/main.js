@@ -24,8 +24,8 @@ function startQuiz() {
 function startRandomQuiz() {
     clearScreen();
     loadQuestions('/quiz', getQuestions);
-    let questions = questionArr;
-    displayQuestion(questions)
+    //let questions = questionArr;
+
 }
 
 function clearScreen() {
@@ -46,6 +46,7 @@ function getQuestions(result) {
     for (let question of result) {
         questionArr.push(question['question'])
     }
+    displayQuestion(questionArr)
 }
 
 function getRandomQuestion(questions) {
