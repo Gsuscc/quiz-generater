@@ -41,7 +41,10 @@ function createNextButton(questions) {
     nextQuestionButton.innerText = 'Next'
     nextQuestionButton.setAttribute('class', 'btn btn-primary btn-lg')
     nextQuestionButton.setAttribute('id', 'next-question')
-    nextQuestionButton.addEventListener('click', displayQuestion.bind(event, questions));
+    nextQuestionButton.addEventListener('click', function (event) {
+
+            displayQuestion(questions)
+    });
     container.appendChild(nextQuestionButton)
 }
 
@@ -54,11 +57,12 @@ function deleteQuestionFromArray(questions, question) {
     let index = questions.indexOf(question);
     questions.splice(index,1);
 }
+let result = 0
 
 function displayQuestion(questions){
     if (questions.length > 1){
-        clearNextButton()
-        clearQuestionContainer()
+        // clearNextButton()
+        // clearQuestionContainer()
         createNextButton(questions)
         generateQuestionContainer()
         let questionHeader = document.getElementById('question')
@@ -90,15 +94,18 @@ function generateQuestionContainer() {
 function createRestartButton() {
     let restartButton = document.createElement('button');
     restartButton.innerText = 'Retry';
-    restartButton.addEventListener('click', loadQuestions)
+    restartButton.addEventListener('click', function (event) {
+                loadQuestions('/quiz', getQuestions);
+                $("#modal").modal('hide')
+    })
     return restartButton
 }
-function showResult() {
+function showResult(result) {
     $('#container').empty()
     $('#modal-body').empty()
     $('#modal-footer').empty()
     $('#modal-body').append(`Your Result is : ${result} of 95 question`)
-    $('#modal-footer').append()
+    $('#modal-footer').append(createRestartButton())
     $("#modal").modal()
 
 }
